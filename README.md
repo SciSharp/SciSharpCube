@@ -19,8 +19,3 @@ docker run --name scisharp-tensorflow -it -p 5005:5005 scisharp-tensorflow
 ```shell
 docker start scisharp-tensorflow -i
 ```
-
-##### Start Jupyter Notebook
-```shell
-jupyter notebook --allow-root
-```
