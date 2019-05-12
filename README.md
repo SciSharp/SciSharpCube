@@ -8,6 +8,7 @@ cd SciSharpCube
 ```
 ##### Build docker image
 ```shell
+docker pull microsoft/dotnet
 docker build -f ./dockerfiles/TensorFlow.dockfile -t scisharp-tensorflow .
 ```
 ##### Start a container
