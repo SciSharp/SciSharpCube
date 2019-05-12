@@ -14,3 +14,7 @@ docker build -f ./dockerfiles/TensorFlow.dockfile -t scisharp-tensorflow .
 ```shell
 docker run --name scisharp-tensorflow -it -p 5005:5005 scisharp-tensorflow
 ```
+##### Re-enter container
+```shell
+docker start scisharp-tensorflow -i
+```
