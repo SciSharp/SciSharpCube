@@ -1,0 +1,15 @@
+# stage 1: build
+FROM microsoft/dotnet AS scisharp-tensorflow
+WORKDIR /scisharp
+COPY . .
+
+# stage 2: debian setup
+RUN apt-get update -y
+RUN apt-get upgrade -y 
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+
+# stage 3: install Jupyter Notebook
+RUN pip3 install --upgrade pip
+RUN pip3 install jupyter
+
