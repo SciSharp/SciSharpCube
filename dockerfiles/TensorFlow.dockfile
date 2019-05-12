@@ -1,5 +1,5 @@
 # stage 1: build
-FROM microsoft/dotnet AS scisharp-tensorflow
+FROM microsoft/dotnet
 WORKDIR /scisharp
 COPY . .
 
