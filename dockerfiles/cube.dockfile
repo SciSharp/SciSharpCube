@@ -16,8 +16,8 @@ RUN pip3 install jupyter
 #RUN nuget install ICSharpCore
 RUN git clone https://github.com/SciSharp/ICSharpCore
 RUN jupyter kernelspec install ./ICSharpCore/kernel-spec --name=csharpcore
-RUN dotnet build ICSharpCore -o ./ICSharpCore
-RUN sed -i 's/<PATH>/\/scisharp\/ICSharpCore\/src\/ICSharpCore\/ICSharpCore/g' /usr/local/share/jupyter/kernels/csharpcore/kernel.json
+RUN dotnet build ICSharpCore -c Release -o .
+RUN sed -i 's/<PATH>/\/scisharp\/ICSharpCore\/src\/ICSharpCore/g' /usr/local/share/jupyter/kernels/csharpcore/kernel.json
 
 # stage 4: install SciSharp libraries
 #RUN nuget install NumSharp
