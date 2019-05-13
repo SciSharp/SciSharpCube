@@ -8,20 +8,23 @@ cd SciSharpCube
 ```
 ##### Build docker image
 ```shell
-docker pull microsoft/dotnet
-docker build -f ./dockerfiles/TensorFlow.dockfile -t scisharp-tensorflow .
+docker build -f ./dockerfiles/cube.dockfile -t scisharpcube .
 ```
+If `microsoft/dotnet` is not pulled automatically, you should run `docker pull microsoft/dotnet` first.
 ##### Start a container
 ```shell
-docker run --name scisharp-tensorflow -it -p 8888:8888 scisharp-tensorflow
+docker run --name scisharp -it -p 8888:8888 scisharpcube
 ```
 Now you can open the Jupyter link printed out in the console in your browser. Congratulations, 
-you are running SciSharp/TensorFlow.net in Jupyter
+you are running SciSharp STACK in Jupyter
 
-
-##### Re-enter container
+##### Tips (not necessary)
+If you want to open another shell.
+```shell
+docker exec -it scisharp bash
+```
 If you ever exit the container with Control-C you can re-enter it with the following command.
 
 ```shell
-docker start scisharp-tensorflow -i
+docker start scisharp -i
 ```

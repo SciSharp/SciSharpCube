@@ -1,0 +1,27 @@
+# stage 1: build
+FROM microsoft/dotnet
+WORKDIR /scisharp
+COPY . .
+
+# stage 2: debian setup
+RUN apt-get update -y
+RUN apt-get upgrade -y 
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+RUN apt-get install nuget -y
+
+# stage 3: install Jupyter Notebook
+RUN pip3 install --upgrade pip
+RUN pip3 install jupyter
+#RUN nuget install ICSharpCore
+RUN git clone https://github.com/SciSharp/ICSharpCore
+RUN jupyter kernelspec install ./ICSharpCore/kernel-spec --name=csharpcore
+RUN dotnet build ICSharpCore -o ./ICSharpCore
+RUN sed -i 's/<PATH>/\/scisharp\/ICSharpCore\/src\/ICSharpCore\/ICSharpCore/g' /usr/local/share/jupyter/kernels/csharpcore/kernel.json
+
+# stage 4: install SciSharp libraries
+#RUN nuget install NumSharp
+#RUN nuget install TensorFlow.NET
+
+EXPOSE 8888
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
