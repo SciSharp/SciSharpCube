@@ -8,20 +8,33 @@ RUN apt-get update -y
 RUN apt-get upgrade -y 
 RUN apt-get install python3 -y
 RUN apt-get install python3-pip -y
-RUN apt-get install nuget -y
+RUN apt-get install wget -y
 
 # stage 3: install Jupyter Notebook
 RUN pip3 install --upgrade pip
 RUN pip3 install jupyter
-#RUN nuget install ICSharpCore
-RUN git clone https://github.com/SciSharp/ICSharpCore
-RUN jupyter kernelspec install ./ICSharpCore/kernel-spec --name=csharpcore
-RUN dotnet build ICSharpCore -c Release -o .
-RUN sed -i 's/<PATH>/\/scisharp\/ICSharpCore\/src\/ICSharpCore/g' /usr/local/share/jupyter/kernels/csharpcore/kernel.json
 
-# stage 4: install SciSharp libraries
+
+# stage 4: install ICSharpCore
+RUN dotnet tool install ICSharpCore --version 0.2.0 --global
+ENV PATH="/root/.dotnet/tools:${PATH}"
+RUN mkdir kernel-spec
+WORKDIR kernel-spec
+RUN wget https://raw.githubusercontent.com/SciSharp/ICSharpCore/master/kernel-spec/kernel-docker.json
+RUN mv kernel-docker.json kernel.json
+RUN wget https://raw.githubusercontent.com/SciSharp/ICSharpCore/master/kernel-spec/logo-32x32.png
+RUN wget https://raw.githubusercontent.com/SciSharp/ICSharpCore/master/kernel-spec/logo-64x64.png
+
+RUN jupyter kernelspec install /scisharp/kernel-spec --name=csharpcore
+
+# stage 5: install SciSharp libraries
 #RUN nuget install NumSharp
 #RUN nuget install TensorFlow.NET
+
+# stage 6: start jupyter in home directory
+WORKDIR /scisharp
+RUN mkdir home
+WORKDIR home
 
 EXPOSE 8888
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
