@@ -16,7 +16,7 @@ RUN pip3 install jupyter
 
 
 # stage 4: install ICSharpCore
-RUN dotnet tool install ICSharpCore --version 0.2.0 --global
+RUN dotnet tool install ICSharpCore --version 0.2.2 --global
 ENV PATH="/root/.dotnet/tools:${PATH}"
 RUN mkdir kernel-spec
 WORKDIR kernel-spec
@@ -27,14 +27,15 @@ RUN wget https://raw.githubusercontent.com/SciSharp/ICSharpCore/master/kernel-sp
 
 RUN jupyter kernelspec install /scisharp/kernel-spec --name=csharpcore
 
-# stage 5: install SciSharp libraries
-#RUN nuget install NumSharp
-#RUN nuget install TensorFlow.NET
+# stage 6: copy libraries
+WORKDIR /scisharp/lib
+RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.13.1.tar.gz
+RUN tar -C /usr/local -xzf libtensorflow-cpu-linux-x86_64-1.13.1.tar.gz
+RUN rm libtensorflow-cpu-linux-x86_64-1.13.1.tar.gz
+RUN ldconfig
 
-# stage 6: start jupyter in home directory
-WORKDIR /scisharp
-RUN mkdir home
-WORKDIR home
+# stage 5: start jupyter in home directory
+WORKDIR /scisharp/home
 
 EXPOSE 8888
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
