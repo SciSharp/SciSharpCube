@@ -1,7 +1,26 @@
-# SciSharpCube
+# SciSharp Cube
 Quickly experience all the latest features of SciSharp Machine Learning tools in docker container.
 
+### Run from Docker Hub
+
+```shell
+docker run --name scisharp -it -p 8888:8888 scisharpstack/scisharpcube
+```
+
+This command will pull latest [SciSharpCube](<https://hub.docker.com/r/scisharpstack/scisharpcube>) image and run it.
+
+![docker start](assets/docker-start.png)
+
+There is an example of Linear Regression.
+
+![linear regression screen recording](assets/LinearRegression.gif)
+
+
+
+### Build image from local
+
 ##### Get source code
+
 ```shell
 git clone https://github.com/SciSharp/SciSharpCube
 cd SciSharpCube
