@@ -34,6 +34,11 @@ RUN tar -C /usr/local -xzf libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 RUN rm libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 RUN ldconfig
 
+WORKDIR /scisharp/src/InlineRefs
+RUN dotnet restore
+WORKDIR /scisharp
+RUN rm -rf /scisharp/src
+
 # stage 6: start jupyter in home directory
 WORKDIR /scisharp/home
 
