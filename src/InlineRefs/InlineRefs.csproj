@@ -4,6 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TensorFlow.NET" Version="0.10.10" />
-    <PackageReference Include="PlotNET" Version="0.1.5" />
+    <PackageReference Include="PlotNET" Version="0.1.6" />
   </ItemGroup>
 </Project>
