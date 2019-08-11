@@ -1,3 +1,4 @@
+<a href="http://scisharpstack.org"><img src="https://github.com/SciSharp/SciSharp/blob/master/art/scisharp_badge.png" width="200" height="200" align="right" /></a>
 # SciSharp Cube
 Quickly experience all the latest features of SciSharp Machine Learning tools in docker container.
 
