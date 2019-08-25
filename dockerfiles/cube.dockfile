@@ -16,7 +16,7 @@ RUN pip3 install jupyter
 
 
 # stage 4: install ICSharpCore
-RUN dotnet tool install ICSharpCore --version 0.2.2 --global
+RUN dotnet tool install ICSharpCore --version 0.2.3 --global
 ENV PATH="/root/.dotnet/tools:${PATH}"
 RUN mkdir kernel-spec
 WORKDIR kernel-spec
