@@ -1,2 +1,2 @@
-#r "nuget: TensorFlow.NET, 0.10.10"
+#r "nuget: TensorFlow.NET, 0.12.0"
 #r "nuget: PlotNET, 0.1.6"
