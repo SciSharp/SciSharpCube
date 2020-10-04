@@ -29,9 +29,9 @@ RUN jupyter kernelspec install /scisharp/kernel-spec --name=csharpcore
 
 # stage 5: copy libraries
 WORKDIR /scisharp/lib
-RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
-RUN tar -C /usr/local -xzf libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
-RUN rm libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
+RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-2.3.0.tar.gz
+RUN tar -C /usr/local -xzf libtensorflow-cpu-linux-x86_64-2.3.0.tar.gz
+RUN rm libtensorflow-cpu-linux-x86_64-2.3.0.tar.gz
 RUN ldconfig
 
 WORKDIR /scisharp/src/InlineRefs
